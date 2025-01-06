@@ -1,0 +1,1 @@
+Modern template for quick start up KMP project with ui and navigation based on decompose.
