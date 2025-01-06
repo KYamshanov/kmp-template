@@ -53,7 +53,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.kyamshanov._replacementPlace_"
+    namespace = "ru.kyamshanov.replacementPlace"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

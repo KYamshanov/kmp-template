@@ -41,7 +41,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "ru.kyamshanov._replacementPlace_"
+            packageName = "ru.kyamshanov.replacementPlace"
             packageVersion = "1.0.0"
         }
     }
