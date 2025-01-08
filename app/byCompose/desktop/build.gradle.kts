@@ -8,13 +8,16 @@ plugins {
 }
 
 kotlin {
-
     jvm("desktop") {
         withJava()
     }
 
     sourceSets {
         val desktopMain by getting
+
+        commonMain.dependencies {
+            implementation(compose.components.resources)
+        }
 
         desktopMain.dependencies {
             implementation(projects.shared)
@@ -29,7 +32,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
-            implementation(compose.components.resources)
+            //   implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
         }
     }
@@ -40,9 +43,36 @@ compose.desktop {
         mainClass = "MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            includeAllModules = false
+            modules = arrayListOf(
+                "java.base",
+                "java.desktop",
+                "java.logging",
+                "jdk.crypto.ec"
+            )
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+                TargetFormat.Exe
+            )
             packageName = "ru.kyamshanov.replacementPlace"
             packageVersion = "1.0.0"
+            description = "replacementPlace"
+            copyright = "© 2025 KYamshanov. All rights reserved."
+            vendor = "KYamshanov"
+
+            windows {
+                menu = true
+                iconFile.set(project.file("icons/app_icon.ico"))
+            }
+            appResourcesRootDir.set(project.layout.projectDirectory.dir("assets"))
+            jvmArgs += "-splash:app/resources/splash_logo.png"
+        }
+        buildTypes.release.proguard {
+            obfuscate.set(true)
+            isEnabled.set(true)
+            configurationFiles.from("proguard-rules.pro")
         }
     }
 }

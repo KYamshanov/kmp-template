@@ -4,6 +4,9 @@ import androidx.compose.ui.window.rememberWindowState
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import org.jetbrains.compose.resources.painterResource
+import replacementplace.app.bycompose.desktop.generated.resources.Res
+import replacementplace.app.bycompose.desktop.generated.resources.app_icon
 import ru.kyamshanov.replacementPlace.App
 import ru.kyamshanov.replacementPlace.DefaultRootComponent
 import ru.kyamshanov.replacementPlace.RootComponent
@@ -30,7 +33,8 @@ fun main() {
         Window(
             onCloseRequest = ::exitApplication,
             state = windowState,
-            title = "My Application"
+            title = "replacementPlace",
+            icon = painterResource(Res.drawable.app_icon) //for generate Res class use `gradle :app:byCompose:desktop:generateComposeResClass`
         ) {
             App(root)
         }
